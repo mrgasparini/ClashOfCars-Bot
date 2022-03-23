@@ -1,0 +1,14 @@
+{
+  "dependencies": {
+    "axios": "^0.26.1",
+    "dotenv": "^16.0.0",
+    "moment": "^2.29.1",
+    "node-schedule": "^2.1.0"
+  },
+  "type": "module",
+  "name": "ClashOfCars",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Matheus",
+  "license": "MIT"
+}
