@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { getToken } from '../auth/index.js';
-import { getRequestHeaders } from '../utils/request.js';
+import { getRequestHeaders, getRequestParams } from '../utils/request.js';
 
 export const repairRequest = async function (carUuid, carName) {
     console.log(`Realizando reparo no carro: ${carName}. 🔧 🔧 🔧`);

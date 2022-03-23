@@ -6,7 +6,7 @@ var token = '';
 
 const doLogin = async function () {
     const walletAddress = process.env.WALLET_ADDRESS;
-    const params = getRequestParams({ wallet_address: walletAddress });
+    const params = getRequestParams({ walletAddress: walletAddress });
 
     var response = await axios.post('https://api.clashofcars.io/api/auth/player/login',
     params.toString(),
