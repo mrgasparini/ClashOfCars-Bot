@@ -128,6 +128,7 @@ A cada 1 hora ele atualiza o token para evitar erros de autenticação.
 - [x] Race Farm
 - [x] Repair Cars
 - [x] Run with a car that is already full when starting the application
+- [ ] Auto farm when bot is initialized 24 hours later than last refuel
 - [ ] Auto Claim(Optional)
 - [ ] Auto Buy Car(Optional)
 - [ ] Notify when there is an update
