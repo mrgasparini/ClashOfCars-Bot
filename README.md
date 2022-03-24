@@ -122,14 +122,26 @@ Para que ele funcione é preciso que o arquivo .env seja preenchido corretamente
 Ele vai constantemente checar se você foi desconectado para realizar o login novamente.
 A cada 1 hora ele atualiza o token para evitar erros de autenticação.
 
+### Nova funcionalidade liberada!!
+
+#### Auto Claim
+
+Para ativar o AutoClaim basta adicionar a seguinte linha no arquivo _.env_. A funcionalidade faz o resgate de sempre do dia que não possuir taxa para resgate(Data de 5 dias antes do atual).
+
+```
+AUTO_CLAIM_ENABLE=true
+```
+
+Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário ativá-la para que comece a funcionar.
+
 ### Próximas atualizações
 
 - [x] Refuel in correct time
 - [x] Race Farm
 - [x] Repair Cars
 - [x] Run with a car that is already full when starting the application
-- [ ] Auto farm when bot is initialized 24 hours later than last refuel
-- [ ] Auto Claim(Optional)
+- [x] Auto farm when bot starts 24 hours after last resupply
+- [x] Auto Claim(Optional)
 - [ ] Auto Buy Car(Optional)
 - [ ] Notify when there is an update
 

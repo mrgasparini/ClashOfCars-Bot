@@ -3,6 +3,7 @@ import dotenv from 'dotenv';
 import { getToken } from './auth/index.js'
 import { getAllCars } from './car/car.js'
 import { scheduleRefuels } from './car/refuel.js'
+import { scheduleRewardClaim } from './car/farm.js'
 
 dotenv.config();
 
@@ -13,8 +14,9 @@ export const startProcess = async function() {
         await getToken();
         var cars = await getAllCars();
         await scheduleRefuels(cars);
-        
+        await scheduleRewardClaim();
     } catch(e) {
+        console.log(e);
         console.log("Erro de credenciais. Reiniciando aplicação... 🔃 🔃 🔃");
         startProcess();
     }

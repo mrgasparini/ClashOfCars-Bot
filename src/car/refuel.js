@@ -3,20 +3,32 @@ import { getToken } from '../auth/index.js';
 import schedule from 'node-schedule';
 import { getRequestHeaders, getRequestParams } from '../utils/request.js';
 import { doFarmRace } from './race.js'
+import { racesAmountResume } from './farm.js'
 import moment from 'moment'
 
-export const scheduleRefuels = function (cars){
-    cars.forEach(c => {
+export const scheduleRefuels = async function (cars){
+    for await (let c of cars) {
         if(c.currentRefuel > 0)
             doFarmRace(c);
 
-        var nextRefuel = moment(c.dateLastRefuel).add(21, 'hours').utc().toISOString();
+        var lastRefuelUtc = moment(c.dateLastRefuel).add(-3, 'hours').utc().toISOString();
+        var hoursSinceLastUpdate = moment.utc().diff(lastRefuelUtc, 'h');
         
-        schedule.scheduleJob(nextRefuel, async function (car) {
-            var refueledCar = await refuelRequest(car.uuid, car.editionName);
+        if(hoursSinceLastUpdate >= 24) {
+            var refueledCar = await refuelRequest(c.uuid, c.editionName);
+            
             await doFarmRace(refueledCar);
-        }.bind(null, c));
-    })
+            await racesAmountResume();
+        } else {
+            var nextRefuel = moment(c.dateLastRefuel).add(21, 'hours').utc().toISOString();
+
+            schedule.scheduleJob(nextRefuel, async function (car) {
+                var refueledCar = await refuelRequest(car.uuid, car.editionName);
+                await doFarmRace(refueledCar);
+                await racesAmountResume();
+            }.bind(null, c));
+        }
+    }
 
     console.log(`Reabastecimento dos carros agendados com sucesso. 🥇🥇🥇`);
 }
@@ -30,13 +42,16 @@ const refuelRequest = async function (carUuid, carName) {
     while(success === false) {
         await new Promise(async (resolve) => {
             setTimeout(async () => {
-                response = await axios.post('https://api.clashofcars.io/api/player/car/refuel',
-                params.toString(),
-                {
-                    headers: getRequestHeaders(await getToken())
-                });
-        
-                success = response.data.success;
+                try{
+                    response = await axios.post('https://api.clashofcars.io/api/player/car/refuel',
+                    params.toString(),
+                    {
+                        headers: getRequestHeaders(await getToken())
+                    });
+            
+                    success = response.data.success;
+                } catch(e) {}
+                
                 resolve();
             }, 5000)
         })
