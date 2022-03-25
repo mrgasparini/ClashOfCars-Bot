@@ -20,8 +20,8 @@ const doLogin = async function () {
         token = '';
 }
 
-export const getToken = async function() {
-    if(token === '') 
+export const getToken = async function(force) {
+    if(token === '' || force) 
         await doLogin();
     
     return token;

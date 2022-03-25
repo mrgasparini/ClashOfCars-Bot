@@ -46,15 +46,9 @@ Insira o seguinte comando no terminal:
 
 ```
 sudo apt update
-sudo apt install nodejs
-```
-
-### Manjaro
-
-Insira o seguinte comando no terminal:
-
-```
-sudo snap install node --classic
+curl -fsSL https://deb.nodesource.com/setup_16.x | sudo -E bash -
+sudo apt-get install -y nodejs
+sudo apt-get npm
 ```
 
 ## Preparando a aplicação

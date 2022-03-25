@@ -30,7 +30,8 @@ export const doFarmRace = async function (car) {
             }, 20000)
         })
     }
-    console.log(`Finalizando corridas do carro ${car.editionName}. 🏆🏆🏆`);
+    console.log(`Finalizando corridas do carro ${car.editionName}. 🏆 🏆 🏆`);
+    racesAmountResume();
 }
 
 const raceRequest = async function (carUuid) {

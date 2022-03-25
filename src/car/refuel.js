@@ -3,7 +3,6 @@ import { getToken } from '../auth/index.js';
 import schedule from 'node-schedule';
 import { getRequestHeaders, getRequestParams } from '../utils/request.js';
 import { doFarmRace } from './race.js'
-import { racesAmountResume } from './farm.js'
 import moment from 'moment'
 
 export const scheduleRefuels = async function (cars){
@@ -11,26 +10,24 @@ export const scheduleRefuels = async function (cars){
         if(c.currentRefuel > 0)
             doFarmRace(c);
 
-        var lastRefuelUtc = moment(c.dateLastRefuel).add(-3, 'hours').utc().toISOString();
+        var lastRefuelUtc = moment().utc(c.dateLastRefuel).toISOString();
         var hoursSinceLastUpdate = moment.utc().diff(lastRefuelUtc, 'h');
         
         if(hoursSinceLastUpdate >= 24) {
             var refueledCar = await refuelRequest(c.uuid, c.editionName);
             
-            await doFarmRace(refueledCar);
-            await racesAmountResume();
+            doFarmRace(refueledCar);
         } else {
-            var nextRefuel = moment(c.dateLastRefuel).add(21, 'hours').utc().toISOString();
+            var nextRefuel = moment().utc(c.dateLastRefuel).toISOString();
 
             schedule.scheduleJob(nextRefuel, async function (car) {
                 var refueledCar = await refuelRequest(car.uuid, car.editionName);
                 await doFarmRace(refueledCar);
-                await racesAmountResume();
             }.bind(null, c));
         }
     }
 
-    console.log(`Reabastecimento dos carros agendados com sucesso. 🥇🥇🥇`);
+    console.log(`Reabastecimento dos carros agendados com sucesso. 🥇 🥇 🥇`);
 }
 
 const refuelRequest = async function (carUuid, carName) {
@@ -50,7 +47,9 @@ const refuelRequest = async function (carUuid, carName) {
                     });
             
                     success = response.data.success;
-                } catch(e) {}
+                } catch(e) {
+                    await getToken(true)
+                }
                 
                 resolve();
             }, 5000)

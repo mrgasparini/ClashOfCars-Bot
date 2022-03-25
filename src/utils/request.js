@@ -13,10 +13,14 @@ export const getRequestHeaders = function (token){
 
 export const getRequestParams = function ({
     walletAddress,
-    carUuid
+    carUuid,
+    dateRace
 }) {
-    return new URLSearchParams({ 
-        wallet_address: walletAddress ? walletAddress : undefined,
-        carUuid: carUuid ? carUuid : undefined
-    });
+    const paramsObject = {}
+
+    walletAddress ? paramsObject.wallet_address = walletAddress : undefined
+    carUuid ? paramsObject.carUuid = carUuid : undefined
+    dateRace ? paramsObject.dateRace = dateRace : undefined
+
+    return new URLSearchParams(paramsObject);
 }
