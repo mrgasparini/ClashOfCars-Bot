@@ -10,13 +10,11 @@ dotenv.config();
 export const startProcess = async function() {
     try{
         console.log("Aplicação iniciada com sucesso. Let's run!! 🏎️ 🏎️ 🏎️");
-
         await getToken();
         var cars = await getAllCars();
         await scheduleRefuels(cars);
         await scheduleRewardClaim();
     } catch(e) {
-        console.log(e);
         console.log("Erro de credenciais. Reiniciando aplicação... 🔃 🔃 🔃");
         startProcess();
     }

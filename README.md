@@ -138,6 +138,7 @@ Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário 
 - [x] Auto Claim(Optional)
 - [ ] Auto Buy Car(Optional)
 - [ ] Notify when there is an update
+- [ ] Implementar aviso via telegram de quanto foi farmado após todas as corridas
 
 ## Curtiu? Dê aquela fortalecida :)
 

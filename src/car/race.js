@@ -2,6 +2,7 @@ import axios from 'axios';
 import { getToken } from '../auth/index.js';
 import { getRequestHeaders, getRequestParams } from '../utils/request.js';
 import { repairRequest } from './maintenance.js'
+import { racesAmountResume } from './farm.js'
 
 export const doFarmRace = async function (car) {
     console.log(`Iniciando corridas do carro: ${car.editionName}. 🚦 🚦 🚦`);
