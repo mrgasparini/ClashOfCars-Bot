@@ -10,7 +10,7 @@ export const scheduleRewardClaim = async function () {
     if(autoClaimEnable)
         schedule.scheduleJob({
             rule: '1 0 * * *',
-            tz: 'Europe/Lisbon'
+            tz: 'Etc/UTC'
         }, async () => { 
             const dateRace = moment().utc().add(-5, 'days').format('YYYY-MM-DD')
             console.log(`Realizando reward claim do dia: ${dateRace}. 💰 💰 💰`);
@@ -29,6 +29,7 @@ export const scheduleRewardClaim = async function () {
             console.log("Ocorreu um erro ao realizar o claim. 🤨 🤨 🤨");
         })
 }
+
 export const racesAmountResume = async function () {
     var response = await axios.get(`https://api.clashofcars.io/api/player/farm/history?dateRace=${moment().utc().format('YYYY-MM-DD')}`,
     {
@@ -36,5 +37,5 @@ export const racesAmountResume = async function () {
     });
 
     if(response.data.success)
-        console.log(`Total de clash farmados: ${response.data.jsonData.totalClashsExpectRedeem}. 💸 💸 💸`);
+        console.log(`Total de clash farmados: ${Math.floor(response.data.jsonData.totalClashsExpectRedeem)}. 💸 💸 💸`);
 }

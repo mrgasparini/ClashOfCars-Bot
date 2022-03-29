@@ -1,8 +1,8 @@
-import axios from 'axios';
 import { getToken } from '../auth/index.js';
 import { getRequestHeaders, getRequestParams } from '../utils/request.js';
 import { repairRequest } from './maintenance.js'
 import { racesAmountResume } from './farm.js'
+import { limitedRequest } from '../utils/rateLimit.js'
 
 export const doFarmRace = async function (car) {
     console.log(`Iniciando corridas do carro: ${car.editionName}. 🚦 🚦 🚦`);
@@ -38,7 +38,7 @@ export const doFarmRace = async function (car) {
 const raceRequest = async function (carUuid) {
     const params = getRequestParams({ carUuid: carUuid });
 
-    return await axios.post('https://api.clashofcars.io/api/player/farm/new/race',
+    return await limitedRequest.post('https://api.clashofcars.io/api/player/farm/new/race',
         params.toString(),
         {
             headers: getRequestHeaders(await getToken())

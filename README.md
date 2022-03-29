@@ -136,9 +136,9 @@ Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário 
 - [x] Run with a car that is already full when starting the application
 - [x] Auto farm when bot starts 24 hours after last resupply
 - [x] Auto Claim(Optional)
-- [ ] Auto Buy Car(Optional)
+- [X] Auto Buy Car(Optional)
 - [ ] Notify when there is an update
-- [ ] Implementar aviso via telegram de quanto foi farmado após todas as corridas
+- [ ] Implement telegram notice of how much has been farmed after all races
 
 ## Curtiu? Dê aquela fortalecida :)
 

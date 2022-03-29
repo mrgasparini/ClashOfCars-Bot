@@ -1,12 +1,9 @@
-import axios from 'axios';
 import { getToken } from '../auth/index.js';
 import schedule from 'node-schedule';
 import { getRequestHeaders, getRequestParams } from '../utils/request.js';
 import { doFarmRace } from './race.js'
 import moment from 'moment';
-import rateLimit from 'axios-rate-limit';
-
-const limitedRequest = rateLimit(axios.create(), { maxRequests: 1, perMilliseconds: 1000, maxRPS: 1 });
+import { limitedRequest } from '../utils/rateLimit.js'
 
 export const scheduleRefuels = async function (cars){
     for await (let c of cars) {

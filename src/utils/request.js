@@ -14,7 +14,9 @@ export const getRequestHeaders = function (token){
 export const getRequestParams = function ({
     publicKey,
     carUuid,
-    dateRace
+    dateRace,
+    amount,
+    chestUuid
 }, isLogin) {
     const paramsObject = {}
 
@@ -22,6 +24,8 @@ export const getRequestParams = function ({
     publicKey ? paramsObject.publicKey = publicKey : undefined
     carUuid ? paramsObject.carUuid = carUuid : undefined
     dateRace ? paramsObject.dateRace = dateRace : undefined
+    amount ? paramsObject.units = amount : undefined
+    chestUuid ? paramsObject.chestUuid = chestUuid : undefined
     publicKey ? paramsObject.signedMessage =  {
         "type": "Buffer",
         "data": [
