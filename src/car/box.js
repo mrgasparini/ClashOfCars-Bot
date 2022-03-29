@@ -5,11 +5,11 @@ import axios from 'axios';
 import { startProcess } from '../app.js'
 
 export const scheduleAutoBoxPurchase = async function () {
-    var autoBuyEnable = process.env.AUTO_BUY_ENABLE?.toUpperCase() === 'TRUE' ? true : false;
+    var autoBuyEnable = process.env.AUTO_PURCHASE_ENABLE?.toUpperCase() === 'TRUE' ? true : false;
 
     const minimumValueToPurchase = process.env.MINIMUM_VALUE_TO_PURCHASE
     
-    if(!minimumValueToPurchase)
+    if(!minimumValueToPurchase || minimumValueToPurchase < 1000)
         return;
 
     var clashAmountInGame = await getClashAmount();
@@ -22,7 +22,7 @@ export const scheduleAutoBoxPurchase = async function () {
             console.log(`Realizando auto compra de baú. 🎁 🎁 🎁`);
             const units = process.env.UNITS_TO_PURCHASE;
 
-            const params = new getRequestParams({ amount: units && Number.isInteger(units) ? units : 1 });
+            const params = new getRequestParams({ amount: units && Number.isInteger(units) ? Math.floor(minimumValueToPurchase / (units * 1000)): 1 });
             var response = await axios.post('https://api.clashofcars.io/api/player/services/buy/misterybox',
             params.toString(),
             {
