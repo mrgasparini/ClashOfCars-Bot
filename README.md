@@ -32,6 +32,34 @@ doações. Caso alguém queira realizar algum ajuste ou melhoria de código, ire
 
 #### Os desenvolvedores do jogo ainda não se pronunciaram sobre o uso de bots é oficialmente. Porém, não me responsabilizo por eventuais penalidades sofridas por quem usar o bot, use por sua própria conta e risco.
 
+## Novas funcionalidades liberadas!!
+
+#### Auto Claim
+
+Para ativar o AutoClaim basta adicionar a seguinte linha no arquivo _.env_. A funcionalidade faz o resgate de sempre do dia que não possuir taxa para resgate(Data de 5 dias antes do atual).
+
+```
+AUTO_CLAIM_ENABLE=true
+```
+
+Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário ativá-la para que comece a funcionar.
+
+#### Auto Box Purchase
+
+Para ativar o AutoBoxPurchase basta adicionar as seguintes linhas no arquivo _.env_. A funcionalidade faz a compra e a abertura automática de boxes sempre que a conta possuir o valor mínimo de CLASHs configurado pelo próprio usuário. Segue abaixo instruções de configuração da funcionalidade.
+
+
+```
+AUTO_PURCHASE_ENABLE=true
+MINIMUM_VALUE_TO_PURCHASE=1000
+UNITS_TO_PURCHASE=1
+```
+- AUTO_PURCHASE_ENABLE: Responsável por inicar ou não o processo de compra. Para ativar o processo, basta colocar o valor *true*. Ex: AUTO_PURCHASE_ENABLE=true
+- MINIMUM_VALUE_TO_PURCHASE: Valor mínimo para que a compra seja efetuada. Menor valor aceito: 1000. Ex: O bot só deverá comprar uma box quando o meu saldo em jogo for maior que 1500, logo o valor no arquivo deverá ser: MINIMUM_VALUE_TO_PURCHASE=1501
+- UNITS_TO_PURCHASE: Quantidade de boxes que deverá ser adquirida no processo. Caso o número de boxes seja inferior ao número de CLASHs no atual momento, o bot irá comprar o maior número de boxes que for possível. Ex: UNITS_TO_PURCHASE=1
+
+Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário ativá-la para que comece a funcionar.
+
 # Instalação:
 
 ## Windows
@@ -115,34 +143,6 @@ Assim que ele iniciar ele irá chegar se algum carro tem gasolina e ainda não c
 Para que ele funcione é preciso que o arquivo .env seja preenchido corretamente.
 Ele vai constantemente checar se você foi desconectado para realizar o login novamente.
 A cada 1 hora ele atualiza o token para evitar erros de autenticação.
-
-### Novas funcionalidades liberadas!!
-
-#### Auto Claim
-
-Para ativar o AutoClaim basta adicionar a seguinte linha no arquivo _.env_. A funcionalidade faz o resgate de sempre do dia que não possuir taxa para resgate(Data de 5 dias antes do atual).
-
-```
-AUTO_CLAIM_ENABLE=true
-```
-
-Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário ativá-la para que comece a funcionar.
-
-#### Auto Box Purchase
-
-Para ativar o AutoBoxPurchase basta adicionar as seguintes linhas no arquivo _.env_. A funcionalidade faz a compra e a abertura automática de boxes sempre que a conta possuir o valor mínimo de CLASHs configurado pelo próprio usuário. Segue abaixo instruções de configuração da funcionalidade.
-
-
-```
-AUTO_PURCHASE_ENABLE=true
-MINIMUM_VALUE_TO_PURCHASE=1000
-UNITS_TO_PURCHASE=1
-```
-- AUTO_PURCHASE_ENABLE: Responsável por inicar ou não o processo de compra. Para ativar o processo, basta colocar o valor *true*. Ex: AUTO_PURCHASE_ENABLE=true
-- MINIMUM_VALUE_TO_PURCHASE: Valor mínimo para que a compra seja efetuada. Menor valor aceito: 1000. Ex: O bot só deverá comprar uma box quando o meu saldo em jogo for maior que 1500, logo o valor no arquivo deverá ser: MINIMUM_VALUE_TO_PURCHASE=1501
-- UNITS_TO_PURCHASE: Quantidade de boxes que deverá ser adquirida no processo. Caso o número de boxes seja inferior ao número de CLASHs no atual momento, o bot irá comprar o maior número de boxes que for possível. Ex: UNITS_TO_PURCHASE=1
-
-Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário ativá-la para que comece a funcionar.
 
 ### Próximas atualizações
 
