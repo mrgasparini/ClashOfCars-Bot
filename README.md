@@ -60,6 +60,16 @@ UNITS_TO_PURCHASE=1
 
 Obs: Por padrão funcionalidade fica **_desativada_**, portanto, é necessário ativá-la para que comece a funcionar.
 
+#### Update Notice
+
+Foi adicionado uma verificação para sempre que a aplicação for reiniciada, verificar se há alguma atualização no repositório
+
+Para que essa função funcione, foi necessário mudar a forma de inicialição da aplicação, agora o bot deverá ser iniciado da seguinte maneira: 
+
+```
+npm start
+```
+
 # Instalação:
 
 ## Windows
@@ -120,7 +130,7 @@ npm i
 ### Pronto! Agora é só iniciar o bot com o comando
 
 ```
-node index
+npm start
 ```
 
 ![run](https://raw.githubusercontent.com/mrgasparini/ClashOfCars-Bot/main/readme-images/node.png)
@@ -153,7 +163,7 @@ A cada 1 hora ele atualiza o token para evitar erros de autenticação.
 - [x] Auto farm when bot starts 24 hours after last resupply
 - [x] Auto Claim(Optional)
 - [X] Auto Purchase Car(Optional)
-- [ ] Notify when there is an update
+- [X] Notify when there is an update
 - [ ] Implement telegram notice of how much has been farmed after all races
 
 ## Curtiu? Dê aquela fortalecida :)

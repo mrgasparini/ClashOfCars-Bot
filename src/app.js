@@ -5,11 +5,13 @@ import { getAllCars } from './car/car.js'
 import { scheduleRefuels } from './car/refuel.js'
 import { scheduleRewardClaim } from './car/farm.js'
 import { scheduleAutoBoxPurchase } from './car/box.js'
+import { verifyAppVersion } from './utils/version.js'
 
 dotenv.config();
 
 export const startProcess = async function() {
     try{
+        await verifyAppVersion();
         console.log("Aplicação iniciada com sucesso. Let's run!! 🏎️ 🏎️ 🏎️");
         await getToken();
         var cars = await getAllCars();
@@ -17,6 +19,7 @@ export const startProcess = async function() {
         await scheduleRewardClaim();
         await scheduleAutoBoxPurchase();
     } catch(e) {
+        console.log(e);
         console.log("Erro de credenciais. Reiniciando aplicação... 🔃 🔃 🔃");
         startProcess();
     }

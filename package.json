@@ -6,9 +6,12 @@
     "moment": "^2.29.1",
     "node-schedule": "^2.1.0"
   },
+  "scripts": {
+    "start": "node --experimental-json-modules index.js"
+  },
   "type": "module",
   "name": "clashofcars",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "main": "index.js",
   "author": "Matheus",
   "license": "MIT"
