@@ -24,7 +24,7 @@ export const scheduleRewardClaim = async function () {
 
             if(response.data.success) {
                 console.log(`Claim realizado com sucesso. Clash sacados: ${response.data.jsonData.clashReward} 💸 💸 💸`);
-                console.log(`Saldo em conta após o claim. ${response.data.jsonData.remainingClashs} CLASHs 💰 💰 💰`);
+                console.log(`Saldo em conta após o claim. ${Math.floor(response.data.jsonData.remainingClashs)} CLASHs 💰 💰 💰`);
             } else
             console.log("Ocorreu um erro ao realizar o claim. 🤨 🤨 🤨");
         })
